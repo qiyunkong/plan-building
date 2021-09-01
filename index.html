@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <title>云博客</title>
+  <style>
+    html,body{
+      height: 100%;
+    }
+    .root{
+      height: 100vh;
+      padding: 10px;
+    }
+    .on{
+      background-color: #333;
+      color: #fff;
+    }
+    /* 中等屏幕（桌面显示器，大于等于 992px） */
+    @media (max-width: 992px) { 
+      .root{
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="root">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">干饭表 450元</div>
+      <div class="panel-body">
+        <p>每日三餐,穿过挪威的森林，让我走进你梦里。夕阳落在我的铠甲，王子不一定骑白马，有人西海为家，现在是晚上九点，我不是马思唯，我是干饭干多了长得肥</p>
+      </div>
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+            <th>星期六</th>
+            <th>星期日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">早</th>
+            <td>包子</td>
+            <td>包子</td>
+            <td>包子</td>
+            <td>包子</td>
+            <td>包子</td>
+            <td>包子</td>
+            <td>包子</td>
+          </tr>
+          <tr>
+            <th scope="row">中</th>
+            <td>面条</td>
+            <td>面条</td>
+            <td>面条</td>
+            <td>面条</td>
+            <td>面条</td>
+            <td>面条</td>
+            <td>面条</td>
+          </tr>
+          <tr>
+            <th scope="row">晚</th>
+            <td>蔬菜</td>
+            <td>蔬菜</td>
+            <td>蔬菜</td>
+            <td>蔬菜</td>
+            <td>蔬菜</td>
+            <td>蔬菜</td>
+            <td>蔬菜</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+  const DataX = {}
+  init()
+  function init(){
+    DataX.week = getWeekDate()
+    initDom()
+    setWeekStyle(DataX.weeekIndex)
+  }
+  function initDom(){
+    const thList =  [...document.querySelectorAll('thead th')]
+    thList.forEach(getWeekIndex)
+  }
+
+  
+  function setWeekStyle(index){
+    [...document.querySelectorAll(`tr td:nth-child(${index+1}), tr th:nth-child(${index+1})`)].forEach((item)=>{
+      item.className = "on"
+    })
+  }
+
+  function getWeekIndex(item,index) {
+    if(item.innerText.toString() == DataX.week) {
+      DataX.weeekIndex = index;
+    }
+  }
+
+  function getWeekDate() {
+    var now = new Date();
+    var day = now.getDay();
+    var weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
+    var week = weeks[day];
+    return week;
+  }
+</script>
+
+</html>
